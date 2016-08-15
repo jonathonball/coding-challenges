@@ -56,14 +56,13 @@ else:
     os.mkdir(config_path)
     f = open(config_path_string, 'w')
     paths['base'] = os.path.dirname(os.path.realpath(__file__)) + '/'
-    paths['regurge'] = paths['base'] + 'regurge.py'
     json.dump(paths, f, indent=4)
     f.close()
 
 dirs = ['bin', 'input', 'output']
-
 for dir in dirs:
     paths[dir] = paths['base'] + dir + '/'
+paths['regurge'] = paths['base'] + 'regurge.py'
 
 # check that everything in the paths dict actually exists
 for paths_key, paths_value in paths.items():
