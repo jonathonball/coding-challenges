@@ -27,6 +27,7 @@ def run(file, params, verbose=False):
     return result
 
 #TODO add in support for multiple test files
+#TODO add in support for user dir config file
 
 # build up paths
 paths = {
