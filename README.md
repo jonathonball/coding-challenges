@@ -3,7 +3,6 @@ Place for me to track my solutions for various programming challenge websites.
 
 - https://www.hackerrank.com
 - https://www.codeeval.com
-- https://projecteuler.net
 
 # To Do
 - OOP overhaul
@@ -11,4 +10,4 @@ Place for me to track my solutions for various programming challenge websites.
  - Build class for handling config
  - Build class for adding new test
 - Add support for multiple input/output file pairs
- 
+- Add in support for codeeval 
