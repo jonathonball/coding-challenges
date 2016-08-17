@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import sys
 
 input_data = [x.strip() for x in sys.stdin.readlines()]
