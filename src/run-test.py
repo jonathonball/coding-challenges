@@ -52,12 +52,14 @@ if glob.glob(config_path_string):
     paths = json.load(f)
     f.close()
 else:
-    print('Installing configuration file')
-    os.mkdir(config_path)
+    print('Installing configuration file, please run again')
+    if not os.path.exists(config_path):
+        os.mkdir(config_path)
     f = open(config_path_string, 'w')
     paths['base'] = os.path.dirname(os.path.realpath(__file__)) + '/'
     json.dump(paths, f, indent=4)
     f.close()
+    sys.exit(0)
 
 dirs = ['bin', 'input', 'output']
 for dir in dirs:
