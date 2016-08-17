@@ -1,10 +1,9 @@
-import os
 import argparse
 import glob
 import subprocess
 import sys
-import getpass
-import json
+
+
 
 def validate_file(type, path, test, ext, verbose=False):
     file_name = glob.glob(path + test + ext)
@@ -29,6 +28,9 @@ def run(file, params, verbose=False):
 
 #TODO add in support for multiple test files
 
+config = ConfigManager()
+paths = config.get_user_config()
+
 # build out CLI parameters
 parser = argparse.ArgumentParser(description='Run challenge tests', usage='%(prog)s [options]')
 parser.add_argument('-r', '--hackerrank', action='append', help='Run a hackerrank.com challenge')
@@ -37,40 +39,6 @@ parameters = parser.parse_args()
 hr_tests = parameters.hackerrank
 LOCAL_DEBUG = parameters.verbose
 
-paths = {
-    'python3' : '/usr/bin/python3'
-}
-
-# attempt to find config file
-local_user = getpass.getuser()
-config_file_name = 'config.json'
-config_path = '/home/' + local_user + '/.config/coding-challenge/'
-config_path_string = config_path + config_file_name
-
-if glob.glob(config_path_string):
-    f = open(config_path_string, 'r')
-    paths = json.load(f)
-    f.close()
-else:
-    print('Installing configuration file, please run again')
-    if not os.path.exists(config_path):
-        os.mkdir(config_path)
-    f = open(config_path_string, 'w')
-    paths['base'] = os.path.dirname(os.path.realpath(__file__)) + '/'
-    json.dump(paths, f, indent=4)
-    f.close()
-    sys.exit(0)
-
-dirs = ['bin', 'input', 'output']
-for dir in dirs:
-    paths[dir] = paths['base'] + dir + '/'
-paths['regurge'] = paths['base'] + 'regurge.py'
-
-# check that everything in the paths dict actually exists
-for paths_key, paths_value in paths.items():
-    if not os.path.exists(paths_value):
-        print('Error locating: ', paths_key, paths_value)
-        sys.exit(1)
 
 if hr_tests != None:
     for hr_test in hr_tests:
