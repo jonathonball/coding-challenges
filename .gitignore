@@ -3,3 +3,5 @@
 libr/__pycache__/
 libr/__pycache__/*
 libr/__*
+__pycache__/
+*.py[cod]
