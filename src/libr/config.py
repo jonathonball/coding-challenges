@@ -4,6 +4,7 @@ import sys
 import json
 import re
 
+
 class ConfigManager():
 
     def __init__(self):
