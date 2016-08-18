@@ -1,8 +1,8 @@
+import sys
 import argparse
 import glob
 import subprocess
-import sys
-
+from libr.config import ConfigManager
 
 
 def validate_file(type, path, test, ext, verbose=False):
@@ -26,7 +26,7 @@ def run(file, params, verbose=False):
     f.close()
     return result
 
-#TODO add in support for multiple test files
+# TODO add in support for multiple test files
 
 config = ConfigManager()
 paths = config.get_user_config()
@@ -54,11 +54,11 @@ if hr_tests != None:
 
         if LOCAL_DEBUG:
             print('Expected output:')
-        answer = run(test_output_file, [paths['python3'], paths['regurge']], LOCAL_DEBUG)
+        answer = run(test_output_file, [paths['python'], paths['regurge']], LOCAL_DEBUG)
 
         if LOCAL_DEBUG:
             print('Your output:')
-        output = run(test_input_file, [paths['python3'], test_file], LOCAL_DEBUG)
+        output = run(test_input_file, [paths['python'], test_file], LOCAL_DEBUG)
 
         if answer == output:
             print('Test passed.')

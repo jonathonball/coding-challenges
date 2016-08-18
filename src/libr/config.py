@@ -4,8 +4,6 @@ import sys
 import json
 import re
 
-__all__ = ['ConfigManager']
-
 class ConfigManager():
 
     def __init__(self):
@@ -43,7 +41,7 @@ class ConfigManager():
 
     def add_runtime_paths(self):
         for dir in self.dirs:
-            self.paths[dir] = self.paths['base'] + dir
+            self.paths[dir] = self.paths['base'] + dir + '/'
         self.paths['regurge'] = self.paths['base'] + 'regurge.py'
 
     def install_user_config(self):
@@ -58,6 +56,7 @@ class ConfigManager():
             print("Configuration installation declined")
         sys.exit(0)
 
+    @staticmethod
     def boolean_prompt(self, msg):
         response = input(msg)
         if re.match("ye?s?", response, re.IGNORECASE):
