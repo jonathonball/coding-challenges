@@ -34,11 +34,12 @@ paths = config.get_user_config()
 # build out CLI parameters
 parser = argparse.ArgumentParser(description='Run challenge tests', usage='%(prog)s [options]')
 parser.add_argument('-r', '--hackerrank', action='append', help='Run a hackerrank.com challenge')
+parser.add_argument('-c', '--codeeval', action='append', help="Run a codeeval challenge")
 parser.add_argument('-v', '--verbose', action='store_true', help='Show debug')
 parameters = parser.parse_args()
 hr_tests = parameters.hackerrank
+ce_tests = parameters.codeeval
 LOCAL_DEBUG = parameters.verbose
-
 
 if hr_tests != None:
     for hr_test in hr_tests:
@@ -64,3 +65,10 @@ if hr_tests != None:
             print('Test passed.')
         else:
             print('Test failed.')
+
+if ce_tests != None:
+    for ce_test in ce_tests:
+        print("Codeeval not yet implemented")
+
+if hr_tests == None and ce_tests == None:
+    print("No tests provided")
